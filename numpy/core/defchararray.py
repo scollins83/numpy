@@ -2510,6 +2510,28 @@ class chararray(ndarray):
         --------
         char.splitlines
 
+        Examples
+        --------
+        >>> 'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines()
+        ['ab c', '', 'de fg', 'kl']
+        >>> 'ab c\\n\\nde fg\\rkl\\r\\n'.splitlines(keepends=True)
+        ['ab c\n', '\n', 'de fg\r', 'kl\r\n']
+
+        Unlike split() when a delimiter string sep is given,
+        this method returns an empty list for the empty string,
+        and a terminal line break does not result in an extra line:
+
+        >>> "".splitlines()
+        []
+        >>> "One line\\n".splitlines()
+        ['One line']
+
+        For comparison, split('\n') gives:
+        >>> ''.split('\\n')
+        ['']
+        >>> 'Two lines\\n'.split('\\n')
+        ['Two lines', '']
+
         """
         return splitlines(self, keepends)
 
